@@ -1,7 +1,7 @@
 <template>
 	
 	<div>
-			<mt-swipe :auto="2000">
+			<mt-swipe :auto="3000">
   				<mt-swipe-item v-for='item in list' :key='item.id'>
   				<img :src="item.img"/>		
   			</mt-swipe-item>
@@ -57,7 +57,10 @@
 //				this.$http.get('http://vue.studyit.io/api/getlunbo').then((res)=>{
 //					
 //				})
-				Toast('加载数据....');
+				if(!this.list.length){
+					Toast('jj....');
+				}
+				
 			}
 			
 			

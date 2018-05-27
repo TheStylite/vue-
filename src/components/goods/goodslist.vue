@@ -1,8 +1,8 @@
 <template>
 	<div class="goodslist">
-		<div class="good-item">
+		<!--<router-link class="good-item" v-for="item in goodslist" :to="'/home/goodsinfo/'+item">
 			<img src="../../img/menu1.png"/>
-			<h1 class="title">小米小米小米小米小米小米小米小米小米</h1>
+			<h1 class="title">小米小米小米</h1>
 			<div class="info">
 				<p class="price">
 					<span class="now">￥888</span>
@@ -13,27 +13,13 @@
 					<span>剩60件</span>
 				</p>
 			</div>
-		</div>
-		<div class="good-item">
+		</router-link>-->
+		<div class="good-item" v-for="item in goodslist" @click="goodsinfo(item)">
 			<img src="../../img/menu1.png"/>
-			<h1 class="title">小米</h1>
+			<h1 class="title">小米小米小米</h1>
 			<div class="info">
 				<p class="price">
-					<span class="now">￥888</span>
-					<span class="old">￥999</span>
-				</p>
-				<p class="sell">
-					<span>热卖中</span>
-					<span>剩60件</span>
-				</p>
-			</div>
-		</div>
-		<div class="good-item">
-			<img src="../../img/menu1.png"/>
-			<h1 class="title">小米</h1>
-			<div class="info">
-				<p class="price">
-					<span class="now">￥888</span>
+					<span class="now">￥999</span>
 					<span class="old">￥999</span>
 				</p>
 				<p class="sell">
@@ -46,6 +32,20 @@
 </template>
 
 <script>
+	
+	export default {
+		data(){
+			return {
+				goodslist:[1,2,3],
+			}
+		},
+		methods:{
+			goodsinfo(id){
+				this.$router.push({path:'/home/goodsinfo/'+id});
+			}
+		}	
+	}
+	
 </script>
 
 <style lang="less" scoped>

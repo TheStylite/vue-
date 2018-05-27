@@ -2,7 +2,11 @@
 	<div class="app_container">
 		
 		<!--顶部header区域-->
-		 <mt-header fixed title="vue项目"></mt-header>
+		 <mt-header fixed title="vue项目">
+		 	<span  slot='left' @click="goback" v-show="flag">
+		 		<mt-button icon='back'>返回</mt-button>
+		 	</span>
+		 </mt-header>
 		
 		<!--中间路由区域-->
 		<transition>
@@ -22,7 +26,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item1" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge" id="badge">{{$store.getters.getallCount}}</span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item1" to="/search">
@@ -33,7 +37,28 @@
 	</div>	
 </template>
 <script>
-	
+	export default{
+		data(){
+			return {
+				flag:false
+			}
+		},
+		methods:{
+			goback(){
+				this.$router.go(-1);
+			}
+		},
+		created(){  //因为在哈希值是在改变的时候才会触发事件，所以当组件刚创建出来时就应该判断一下路由
+			this.flag=(this.$route.path=='/home'?false:true);
+		}
+		,
+		watch:{
+			'$route.path':function(newval){
+				this.flag=(newval=='/home'?false:true);
+			}
+		}
+		
+	}
 </script>
 
 <style lang="less" scoped>
